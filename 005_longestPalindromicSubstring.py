@@ -60,6 +60,8 @@ class Solution(object):
         """
         # DP - O(n^2)
         # Don't need to use a matrix to store "pointer"!
+        # and we even don't need to store the length value in the matrix
+
         # reference: https://github.com/shichao-an/leetcode-python/blob/master/longest_palindromic_substring/solution.py
         # BUT still exceed time limit...
         
@@ -68,44 +70,36 @@ class Solution(object):
         if(n==1):
             return s
         
-        M = [[0 for x in range(n)] for x in range(n)]
-        #P = [[0 for x in range(n)] for x in range(n)] # pointer to track which char
-        # "ld", "l", "d"
-        
+        M = [[False for x in range(n)] for x in range(n)]
+
         start = 0
         maxLen = 1
         
+        # Two base cases
         for i in range(n):
-            M[i][i] = 1
+            M[i][i] = True
+
+        for i in range(n - 1):
+            M[i][i+1] = (s[i] == s[i+1])
         
-        for x in range(1, n):
+        for x in range(2, n):
             for i in range(0, n-x):
                 j = i + x
                 if(s[i] == s[j]):
-                    M[i][j] = M[i+1][j-1] + 2
+                    M[i][j] = M[i-1][j+1]
                     if j - i > maxLen:
                         start = i
                         maxLen = j - i
-                    #P[i][j] = "ld"
+                else:
+                    M[i][j] = False
+
+                """
                 else:
                     if (M[i][j-1] > M[i+1][j]):
                         M[i][j] = M[i][j-1]
-                        #P[i][j] = "l"
                     else:
                         M[i][j] = M[i+1][j]
-                        #P[i][j] = "d"
-        
-        """
-        i = 0
-        j = n - 1
-        while(i != j):
-            if(P[i][j] == "ld"):
-                return s[i:j+1]
-            elif(P[i][j] == "l"):
-                j = j - 1
-            else:
-                i = i + 1
-        """
+                """
         
         return s[start:start + maxLen]
 
