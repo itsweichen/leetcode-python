@@ -62,7 +62,7 @@ class Solution(object):
         # Don't need to use a matrix to store "pointer"!
         # and we even don't need to store the length value in the matrix
 
-        # reference: https://github.com/shichao-an/leetcode-python/blob/master/longest_palindromic_substring/solution.py
+        # reference: http://articles.leetcode.com/longest-palindromic-substring-part-i
         # BUT still exceed time limit...
         
         n = len(s)
@@ -85,21 +85,10 @@ class Solution(object):
         for x in range(2, n):
             for i in range(0, n-x):
                 j = i + x
-                if(s[i] == s[j]):
-                    M[i][j] = M[i-1][j+1]
-                    if j - i > maxLen:
-                        start = i
-                        maxLen = j - i
-                else:
-                    M[i][j] = False
-
-                """
-                else:
-                    if (M[i][j-1] > M[i+1][j]):
-                        M[i][j] = M[i][j-1]
-                    else:
-                        M[i][j] = M[i+1][j]
-                """
+                if(s[i] == s[j] and M[i+1][j-1]):
+                    M[i][j] = True
+                    maxLen = x
+                    start = i
         
         return s[start:start + maxLen]
 
