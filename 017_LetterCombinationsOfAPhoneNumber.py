@@ -13,12 +13,16 @@ class Solution(object):
         if digits == "" or digits is None:
             return []
         
-        mapping = {}
-        
-        # add to a dict
-        mapping["2"], mapping["3"] = "abc", "def"
-        mapping["4"], mapping["5"], mapping["6"] = "ghi", "jkl", "mno"
-        mapping["7"], mapping["8"], mapping["9"] = "pqrs", "tuv", "wxyz"
+        mapping = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz"
+        }
         
         res = []
 
