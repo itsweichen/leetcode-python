@@ -1,13 +1,14 @@
 # 03/29/2016
 
+# O(?), 52ms [9%]
+# initing res without judging each time doesn't improve much
+
 class Solution(object):
     def letterCombinations(self, digits):
         """
         :type digits: str
         :rtype: List[str]
         """
-        
-        # O(?), 56ms [5%]
         
         if digits == "" or digits is None:
             return []
@@ -18,9 +19,9 @@ class Solution(object):
         mapping["2"], mapping["3"] = "abc", "def"
         mapping["4"], mapping["5"], mapping["6"] = "ghi", "jkl", "mno"
         mapping["7"], mapping["8"], mapping["9"] = "pqrs", "tuv", "wxyz"
-        mapping["0"] = ""
         
         res = []
+
         for digit in digits:
             temp = []
             if digit in mapping:
