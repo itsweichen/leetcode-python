@@ -29,7 +29,7 @@ class Solution(object):
 
         # Can I do this? lol
         # 88 ms [50%]
-
+        """
         if head is None:
             return False
 
@@ -42,3 +42,19 @@ class Solution(object):
             cur = cur.next
             prev.next = head
         return False
+        """
+
+        #3 racing
+        if head is None or head.next is None:
+            return False
+
+        slow = head
+        fast = head.next
+        while slow != fast:
+            if fast is None or fast.next is None:
+                return False
+
+            slow = slow.next
+            fast = fast.next.next
+
+        return True
