@@ -10,14 +10,8 @@ class Solution(object):
         # 68 ms [20%]
         # function call: 204 ms
 
-
-        if needle == "":
-            return 0
-        if haystack == "":
-            return -1
-
-        n = len(haystack)
-        m = len(needle)
+        if m == 0: return 0
+        if n == 0: return -1
 
         for i in range(n):
             if haystack[i] == needle[0]:
